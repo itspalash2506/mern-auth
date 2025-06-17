@@ -24,3 +24,13 @@ app.use(express.json());
 
 app.use('/api/user', userRoutes); // The function is exported at default with the name "router" but because its exported in default, it can be imported with the name "userRotues"
 app.use("/api/auth", authRoutes);
+
+app.use((err,req,res,next)=>{
+  const statusCode = err.status || 500;
+  const message = err.message || "Something went wrong";
+  res.status(statusCode).json({
+    success: false,
+    statusCode,
+    message,
+  });
+})
