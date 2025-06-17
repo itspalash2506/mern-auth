@@ -2,6 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import userRoutes from "./routes/user.route.js";
+import authRoutes from "./routes/auth.router.js";
 
 dotenv.config();
 
@@ -19,5 +20,7 @@ app.listen(3000, () => {
   console.log("Server is running on the port 3000 changed ");
 });
 
-app.use('/api/user', userRoutes)
-// The function is exported at default with the name "router" but because its exported in default, it can be imported with the name "userRotues"
+app.use(express.json()); 
+
+app.use('/api/user', userRoutes); // The function is exported at default with the name "router" but because its exported in default, it can be imported with the name "userRotues"
+app.use("/api/auth", authRoutes);
