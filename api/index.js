@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import userRoutes from "./routes/user.route.js";
 
 dotenv.config();
 
@@ -14,6 +15,9 @@ mongoose
   });
 
 const app = express();
-app.listen(5173, () => {
-  console.log("Server is running on the port 5173 changed ");
+app.listen(3000, () => {
+  console.log("Server is running on the port 3000 changed ");
 });
+
+app.use('/api/user', userRoutes)
+// The function is exported at default with the name "router" but because its exported in default, it can be imported with the name "userRotues"
